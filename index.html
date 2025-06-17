@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTF Printer Banding Issues: Complete Tutorial & Solutions Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .toc li:before {
+            content: "▸";
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .banding-type {
+            background: #f8f9fa;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .solution {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #6c757d;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .maintenance-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .schedule-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .schedule-card h4 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .checklist {
+            text-align: left;
+        }
+
+        .checklist li {
+            margin-bottom: 8px;
+            list-style: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #e9ecef;
+        }
+
+        .printer-specs {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .maintenance-schedule {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DTF Printer Banding Issues</h1>
+        <p class="subtitle">Complete Tutorial & Solutions Guide for Audley 24" I3200 4-Head DTF Printers (2W+2C)</p>
+        <p>Learn to identify, troubleshoot, and fix all types of banding problems on Audley I3200 2 White + 2 Color printhead systems</p>
+    </header>
+
+    <div class="container">
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#what-is-banding">1. What is DTF Printer Banding?</a></li>
+                <li><a href="#types-of-banding">2. Types of DTF Banding Issues</a></li>
+                <li><a href="#chinese-printer-issues">3. Chinese 24" DTF Printer Specific Issues</a></li>
+                <li><a href="#causes">4. Primary Causes of Banding</a></li>
+                <li><a href="#diagnosis">5. Diagnostic Procedures</a></li>
+                <li><a href="#solutions">6. Step-by-Step Solutions</a></li>
+                <li><a href="#maintenance">7. Preventive Maintenance Schedule</a></li>
+                <li><a href="#software-settings">8. Software Settings & Optimizations</a></li>
+                <li><a href="#hardware-upgrades">9. Hardware Modifications & Upgrades</a></li>
+                <li><a href="#troubleshooting">10. Advanced Troubleshooting</a></li>
+            </ul>
+        </nav>
+
+        <section class="section" style="background: #fff3cd; border: 2px solid #ffc107;">
+            <h2>📚 External Resources & Reference Materials</h2>
+            <p style="margin-bottom: 20px;">These resources provide additional technical information about DTF printer maintenance and troubleshooting:</p>
+            
+            <h3>PDF Maintenance Guides</h3>
+            <ul style="margin-bottom: 20px;">
+                <li><a href="https://www.directcolorsystems.com/wp-content/uploads/2019/06/DCS_Troublshooting_Nozzle_Checks_052219.pdf" target="_blank">Direct Color Systems - Troubleshooting Nozzle Issues (PDF)</a></li>
+                <li><a href="https://www.directcolorsystems.com/wp-content/uploads/2024/02/TechTips_November23_2p-1.pdf" target="_blank">Direct Color Systems - Nozzle Check Print Test Guide (PDF)</a></li>
+                <li><a href="https://icolorprint.com/resource-library/DTF100-1000%20Maintenance%20Guide.pdf" target="_blank">iColor DTF100-1000 Maintenance Guide (PDF)</a></li>
+                <li><a href="https://www.dtgweb.com/wp-content/support_docs/What%20Causes%20Banding%20on%20Epson%20Printers.pdf" target="_blank">What Causes Banding on Epson Printers - Technical Guide (PDF)</a></li>
+            </ul>
+
+            <h3>Online DTF Printer Resources</h3>
+            <ul style="margin-bottom: 20px;">
+                <li><a href="https://www.t-shirtforums.com/threads/epson-1390-dtf-nozzle-check-blue-color-always-change-after-head-clean.896296/" target="_blank">T-Shirt Forums - DTF Nozzle Check Issues Discussion (with images)</a></li>
+                <li><a href="https://www.diydtf.com/topic/2782-what-does-this-nozzle-check-mean/" target="_blank">DIY DTF Forums - Nozzle Check Pattern Analysis</a></li>
+                <li><a href="https://www.t-shirtforums.com/threads/audley-dtf-printer-i3200-60cm-prints-duplicated-lines.898869/" target="_blank">Audley I3200 DTF Printer Duplicated Lines Issue</a></li>
+                <li><a href="https://kb.omniprintonline.com/kb/banding-solutions-for-the-omnidtf/" target="_blank">OmniDTF Knowledge Base - Banding Solutions</a></li>
+            </ul>
+
+            <h3>Manufacturer & Technical Sites</h3>
+            <ul style="margin-bottom: 20px;">
+                <li><a href="https://audleydtfprinter.com/" target="_blank">Audley DTF Printer Official Website</a></li>
+                <li><a href="https://www.procolored.com/blogs/news/dtf-pro-printer-maintenance" target="_blank">Procolored - DTF Pro Printer Maintenance Guide</a></li>
+                <li><a href="https://www.amayauk.com/top-dtf-printer-maintenance-tips-for-blocked-nozzles/" target="_blank">Amaya UK - DTF Printer Maintenance Tips</a></li>
+                <li><a href="https://eazydtf.com/blogs/blog/what-causes-banding-in-dtf-prints-and-how-to-solve-it" target="_blank">EazyDTF - What Causes Banding in DTF Prints</a></li>
+            </ul>
+
+            <div class="tip">
+                <strong>💡 Pro Tip:</strong> Join DTF printing communities and forums to access user-shared images, maintenance logs, and real-world troubleshooting experiences. Many users share their nozzle check patterns and solutions in these communities.
+            </div>
+        </section>
+
+        <section class="section" style="background: #e3f2fd; border: 2px solid #2196f3;">
+            <h2>Your Printer: Audley 24" I3200 4-Head (2W+2C) Configuration</h2>
+            
+            <div class="warning" style="text-align: center; padding: 20px; background: #f8d7da; border-left-color: #dc3545;">
+                <p style="font-weight: bold;">Audley 24" DTF Printer with 4 I3200 Printheads (2 White + 2 Color)</p>
+                <p style="margin-top: 10px;">For product images and specifications, visit the <a href="https://audleydtfprinter.com/" target="_blank">Audley official website</a></p>
+            </div>
+            
+            <div class="tip" style="background: #d4edda; border-left-color: #28a745;">
+                <h3>Key Specifications of Your Audley Printer:</h3>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Printhead Configuration:</strong> 4 x Epson I3200 heads (2 dedicated to white ink, 2 for CMYK colors)</li>
+                    <li><strong>Print Width:</strong> 24 inches (610mm)</li>
+                    <li><strong>Expected Printhead Lifespan:</strong> 1.5-3 years with proper maintenance</li>
+                    <li><strong>Print Speeds:</strong> 4-pass: 15 sqm/h | 6-pass: 10 sqm/h | 8-pass: 8 sqm/h</li>
+                    <li><strong>Software:</strong> Maintop (default), optional CadLink or Photoprint</li>
+                    <li><strong>Critical Feature:</strong> No automatic low ink warnings - manual monitoring required</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <h4>Audley-Specific Maintenance Requirements:</h4>
+                <ul>
+                    <li><strong>White Ink System:</strong> With 2 white heads, circulation must run continuously</li>
+                    <li><strong>Panel Access:</strong> Requires removing screws/panels for internal maintenance</li>
+                    <li><strong>Film Feed:</strong> Clean registration wheel regularly to prevent stretched prints</li>
+                    <li><strong>No Low Ink Alarm:</strong> Check ink levels manually every print session</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="what-is-banding" class="section">
+            <h2>1. What is DTF Printer Banding?</h2>
+            
+            <p>Banding in DTF (Direct-to-Film) printing refers to the appearance of visible horizontal lines or streaks on printed images that appear in the direction of printhead carriage movement. Unlike ink smearing across the film, banding appears as inconsistent ink coverage, creating visible lines or streaks that ruin print quality.</p>
+
+            <div class="banding-type">
+                <h4>Key Characteristics of DTF Banding:</h4>
+                <ul>
+                    <li><strong>Horizontal Lines:</strong> Most common type, running left to right</li>
+                    <li><strong>Inconsistent Coverage:</strong> Uneven ink deposition rather than smearing</li>
+                    <li><strong>Pattern Repetition:</strong> Often occurs in regular intervals</li>
+                    <li><strong>Color-Specific:</strong> May affect certain colors more than others</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="images/prisco-banding-example.png" alt="Example of DTF banding showing horizontal lines" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                <p style="margin-top: 10px; color: #666; font-style: italic;">Example of horizontal banding - visible lines running across the print</p>
+            </div>
+
+            <div class="tip">
+                <strong>Important Note:</strong> Banding differs from printhead strikes or nozzle clogs. While clogs create missing dots or lines, banding shows as uneven ink density across the entire print area.
+            </div>
+        </section>
+
+        <section id="types-of-banding" class="section">
+            <h2>2. Types of DTF Banding Issues</h2>
+
+            <h3>2.1 Nozzle Check Patterns - Good vs Bad</h3>
+            <div class="banding-type">
+                <h4>Critical for Audley 2W+2C Configuration:</h4>
+                <p>With 2 white heads and 2 color heads, you need to monitor all 4 printheads carefully. White heads are especially prone to clogging due to titanium dioxide settling.</p>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <h4>Real Nozzle Check Examples from DTF Printers:</h4>
+                    <img src="images/dtf-nozzle-check-blue-issue.jpg" alt="DTF nozzle check with blue channel issues" style="max-width: 32%; height: auto; margin: 0 0.5%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                    <img src="images/dtf-nozzle-check-banding-pattern.jpg" alt="DTF nozzle check showing banding" style="max-width: 32%; height: auto; margin: 0 0.5%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                    <img src="images/dtf-nozzle-check-color-dropouts.jpg" alt="DTF nozzle check with color dropouts" style="max-width: 32%; height: auto; margin: 0 0.5%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Real examples: Blue channel issues | Horizontal banding pattern | Color dropouts and missing nozzles</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Good Pattern:</strong> Complete, unbroken lines for all channels</li>
+                    <li><strong>Bad Pattern:</strong> Gaps, missing lines, or irregular patterns</li>
+                    <li><strong>White Channels:</strong> Need daily checks due to pigment settling</li>
+                    <li><strong>Color Channels:</strong> CMYK should show consistent coverage</li>
+                </ul>
+            </div>
+
+            <h3>2.2 Horizontal Banding</h3>
+            <div class="banding-type">
+                <h4>Appearance:</h4>
+                <p>Visible horizontal lines or streaks running left-to-right across the print, in the direction of printhead carriage movement.</p>
+                
+                <div class="warning" style="text-align: center;">
+                    <p><strong>Visual Reference:</strong> Horizontal banding appears as consistent lines running left-to-right across the print.</p>
+                    <p>For examples, see the <a href="https://kb.omniprintonline.com/kb/banding-solutions-for-the-omnidtf/" target="_blank">OmniDTF Banding Solutions guide</a></p>
+                </div>
+                
+                <h4>Common Causes:</h4>
+                <ul>
+                    <li>Clogged or deflected nozzles</li>
+                    <li>Inconsistent ink flow</li>
+                    <li>Low humidity environments (&lt;40%)</li>
+                    <li>Damaged printheads</li>
+                </ul>
+
+                <h4>Visual Characteristics:</h4>
+                <ul>
+                    <li>Lines appear as "many very small lines, which cluster together"</li>
+                    <li>Most visible in solid color areas</li>
+                    <li>Particularly problematic with red/magenta colors</li>
+                </ul>
+            </div>
+
+            <h3>2.3 Vertical Banding</h3>
+            <div class="banding-type">
+                <h4>Appearance:</h4>
+                <p>Vertical lines running perpendicular to printhead movement, often appearing as "flashing lines similar to test strip."</p>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_vertical_banding_lines_perpendicular_encoder_s_20250615_201453.png" alt="Vertical banding example" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Vertical banding - often caused by encoder strip issues</p>
+                </div>
+                
+                <h4>Common Causes:</h4>
+                <ul>
+                    <li>Encoder strip damage or contamination</li>
+                    <li>Sensor height adjustment issues</li>
+                    <li>Media advancement problems</li>
+                    <li>Mechanical alignment issues</li>
+                </ul>
+                
+                <div class="warning">
+                    <strong>Audley-Specific Issue:</strong> Registration wheel dust accumulation is a common cause of vertical banding and stretched prints on Audley printers.
+                </div>
+            </div>
+
+            <h3>2.4 Color-Specific Banding</h3>
+            <div class="banding-type">
+                <h4>White Ink Banding (Critical for 2W Configuration):</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_white_ink_banding_gray_lines_missing_coverage_20250615_200004.png" alt="White ink banding issues" style="max-width: 48%; height: auto; margin: 0 1%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                    <img src="images/DTF_color_specific_banding_magenta_red_cyan_dropou_20250615_201520.png" alt="Color dropout banding" style="max-width: 48%; height: auto; margin: 0 1%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Left: White ink settling issues | Right: Color-specific dropout</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Appearance:</strong> Gray appearance or complete white ink dropout</li>
+                    <li><strong>Cause:</strong> White ink pigment settling (can occur in 15 minutes)</li>
+                    <li><strong>Challenge:</strong> Titanium dioxide particles form gel-like substances</li>
+                    <li><strong>2W Advantage:</strong> With 2 white heads, you have redundancy but double the maintenance</li>
+                </ul>
+
+                <h4>Color Channel Dropout:</h4>
+                <ul>
+                    <li><strong>Appearance:</strong> Missing ink in specific color channels</li>
+                    <li><strong>Cause:</strong> Individual nozzle blockages or damper issues</li>
+                    <li><strong>Cross-Contamination:</strong> Colors appearing in wrong channels</li>
+                </ul>
+            </div>
+
+            <h3>2.4 Print Head Alignment Problems</h3>
+            <div class="banding-type">
+                <h4>Misregistration Banding:</h4>
+                <ul>
+                    <li>Colors not aligning properly between printhead passes</li>
+                    <li>Different quality in left-right vs right-left printing directions</li>
+                    <li>Visible in bidirectional printing test patterns</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="images/DTF_printer_horizontal_banding_issue_red_shirt_pri_20250615_195829.png" alt="Horizontal banding on red print" style="max-width: 48%; height: auto; margin: 0 1%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                <img src="images/DTF_printer_good_nozzle_check_pattern_test_CMYK_ch_20250615_195850.png" alt="Good nozzle check pattern" style="max-width: 48%; height: auto; margin: 0 1%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+                <p style="margin-top: 10px; color: #666; font-style: italic;">Left: Horizontal banding on red print | Right: Good nozzle check pattern example</p>
+            </div>
+        </section>
+
+        <section id="chinese-printer-issues" class="section">
+            <h2>3. Audley I3200 4-Head Printer Specific Information</h2>
+            
+            <div class="tip" style="background: #d4edda; border-left-color: #28a745;">
+                <h3>Your Printer Configuration: Audley 4-Head I3200 (2W+2C)</h3>
+                <p>You have the premium Audley configuration with 2 dedicated white heads and 2 color heads. This setup offers:</p>
+                <ul style="margin-top: 10px;">
+                    <li><strong>2 White Heads:</strong> Superior white opacity and coverage on dark garments</li>
+                    <li><strong>2 Color Heads:</strong> Full CMYK color gamut with excellent saturation</li>
+                    <li><strong>I3200 Advantages:</strong> 1.5-3 year lifespan with proper maintenance</li>
+                    <li><strong>Production Speed:</strong> 15 sqm/h (4-pass) with excellent quality</li>
+                    <li><strong>White Ink Redundancy:</strong> If one white head clogs, you still have backup</li>
+                </ul>
+                
+                <div class="warning" style="margin-top: 15px;">
+                    <strong>Critical for 2W+2C:</strong> With 2 white heads, you must maintain BOTH consistently. White ink circulation must run continuously, and both white heads need daily nozzle checks.
+                </div>
+            </div>
+
+            <div class="printer-specs">
+                <h3>Popular Chinese DTF Printer Brands & Models</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Manufacturer</th>
+                            <th>Models</th>
+                            <th>Printhead Type</th>
+                            <th>Common Issues</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Audley Digital</td>
+                            <td>DTF E602/E604, DTF-24H2, Magic DTF-24"</td>
+                            <td>XP600 / I3200</td>
+                            <td>XP600 durability problems</td>
+                        </tr>
+                        <tr>
+                            <td>LINKO</td>
+                            <td>A650 (dual i3200), B-804 (4 heads)</td>
+                            <td>I3200</td>
+                            <td>Better quality, longer lifespan</td>
+                        </tr>
+                        <tr>
+                            <td>AIIFAR/Andemes</td>
+                            <td>24" dual printhead configurations</td>
+                            <td>I3200</td>
+                            <td>Superior quality claims</td>
+                        </tr>
+                        <tr>
+                            <td>Aily</td>
+                            <td>ER-DTF300PRO (24"/300mm)</td>
+                            <td>2x Epson I1600-A1</td>
+                            <td>Temperature sensitivity</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3.1 XP600 Printhead Issues</h3>
+            <div class="warning">
+                <h4>Known Problems with XP600 Printheads:</h4>
+                <ul>
+                    <li><strong>Short Lifespan:</strong> 6-8 months vs I3200's 1.5+ years</li>
+                    <li><strong>White Ink Problems:</strong> "Aren't really designed for commercial DTF printing"</li>
+                    <li><strong>Temperature Sensitivity:</strong> Some inks only work below 18°C room temperature</li>
+                    <li><strong>Daily Maintenance:</strong> Constant battles with cleaning and ink flow</li>
+                </ul>
+            </div>
+
+            <h3>3.2 I3200 Printhead Advantages</h3>
+            <div class="solution">
+                <h4>Why I3200 is Superior for DTF:</h4>
+                <ul>
+                    <li><strong>Quality:</strong> Users report "astounding quality" with I3200 heads</li>
+                    <li><strong>Durability:</strong> 1.5+ years lifespan vs 6-8 months for XP600</li>
+                    <li><strong>Cost-Effective:</strong> Higher initial cost but lower long-term replacement costs</li>
+                    <li><strong>Commercial Grade:</strong> Better suited for high-volume DTF production</li>
+                </ul>
+            </div>
+
+            <h3>3.3 Common Import Quality Issues</h3>
+            <div class="banding-type">
+                <h4>Typical Problems with Chinese DTF Printers:</h4>
+                <ul>
+                    <li><strong>Limited Technical Support:</strong> Basic troubleshooting from suppliers</li>
+                    <li><strong>Quality Control Variations:</strong> Significant differences between units</li>
+                    <li><strong>Hardware Components:</strong> SunYung mainboards and Maintop RIP software limitations</li>
+                    <li><strong>Inadequate Ink Systems:</strong> Poor circulation systems for white ink</li>
+                    <li><strong>Environmental Sensitivity:</strong> Require precise humidity and temperature control</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                <strong>User Experience Quote:</strong> <em>"We bought three printers, two feature dual XP600 setups, one features dual i3200 heads... all three have the same issue... after literally 10 seconds of printing all colors break away and white is basically non-existing... loads of streaks/lines appear"</em>
+            </div>
+        </section>
+
+        <section id="causes" class="section">
+            <h2>4. Primary Causes of Banding</h2>
+
+            <h3>4.1 Ink Flow Problems (40% of cases)</h3>
+            <div class="banding-type">
+                <h4>Low Ink Levels:</h4>
+                <ul>
+                    <li>Often overlooked fundamental cause of color dropouts</li>
+                    <li>Must maintain ink above one-third capacity</li>
+                    <li>Critical for consistent ink flow to printheads</li>
+                </ul>
+
+                <h4>Clogged Nozzles:</h4>
+                <ul>
+                    <li>Dried ink blocking individual nozzles</li>
+                    <li>Ink mist building up during longer print jobs</li>
+                    <li>Creates gaps in coverage leading to banding</li>
+                </ul>
+
+                <h4>Air Bubbles in Ink Lines:</h4>
+                <ul>
+                    <li>Disrupts consistent ink flow to printheads</li>
+                    <li>Causes intermittent ink delivery</li>
+                    <li>Requires "Load Ink" function to prime out</li>
+                </ul>
+            </div>
+
+            <h3>4.2 Printhead Issues (35% of cases)</h3>
+            <div class="banding-type">
+                <h4>Nozzle Problems:</h4>
+                <ul>
+                    <li><strong>Complete Blockage:</strong> Missing nozzles create light horizontal lines</li>
+                    <li><strong>Partial Blockage:</strong> Deflected nozzles cause ink to land incorrectly</li>
+                    <li><strong>Printhead Wear:</strong> Physical damage affects ink deposition patterns</li>
+                </ul>
+
+                <h4>Alignment Issues:</h4>
+                <ul>
+                    <li>Misaligned printheads cause color registration problems</li>
+                    <li>Bidirectional printing quality differences</li>
+                    <li>Vertical distance misalignment between color and white printheads</li>
+                </ul>
+            </div>
+
+            <h3>4.3 Environmental Factors (15% of cases)</h3>
+            <div class="warning">
+                <h4>Critical Environmental Requirements:</h4>
+                <ul>
+                    <li><strong>Humidity:</strong> Must maintain 40-60% relative humidity</li>
+                    <li><strong>Temperature:</strong> Optimal range 68-77°F (20-25°C)</li>
+                    <li><strong>Air Quality:</strong> Dust-free environment to prevent contamination</li>
+                    <li><strong>Stability:</strong> Avoid temperature and humidity fluctuations</li>
+                </ul>
+            </div>
+
+            <h3>4.4 White Ink Specific Issues</h3>
+            <div class="banding-type">
+                <h4>Pigment Settling:</h4>
+                <ul>
+                    <li>Titanium dioxide settles due to gravity in 15 minutes</li>
+                    <li>Forms gel-like substances that clog nozzles and dampers</li>
+                    <li>Requires continuous circulation and daily agitation</li>
+                </ul>
+
+                <h4>Maintenance Requirements:</h4>
+                <ul>
+                    <li>Daily white ink cartridge agitation</li>
+                    <li>Continuous circulation systems during operation</li>
+                    <li>Annual ink bottle cleaning to remove sediment</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="diagnosis" class="section">
+            <h2>5. Diagnostic Procedures</h2>
+
+            <h3>5.1 Initial Diagnosis - Nozzle Check</h3>
+            <div class="tip">
+                <h4>Step 1: Print Nozzle Check Pattern</h4>
+                <p><strong>Always start troubleshooting with this step</strong></p>
+                <ol>
+                    <li>Access nozzle check function in your printer software</li>
+                    <li>Print the test pattern</li>
+                    <li>Examine for missing lines, gaps, or inconsistent coverage</li>
+                    <li>Look for specific colors that are missing or printing poorly</li>
+                </ol>
+                
+                <p><strong>Expected Results:</strong> A good nozzle check should show clear, unbroken lines for all colors with at least 90% of nozzles functioning properly.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                <div style="text-align: center;">
+                    <img src="images/DTF_printer_perfect_nozzle_check_pattern_all_color_20250615_222837.png" alt="Perfect nozzle check pattern" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Good Pattern: All nozzles firing correctly</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="images/DTF_bad_nozzle_check_pattern_clogged_nozzles_missi_20250615_200449.png" alt="Bad nozzle check pattern" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Bad Pattern: Missing lines indicate clogged nozzles</p>
+                </div>
+            </div>
+
+            <h3>5.2 Environmental Assessment</h3>
+            <div class="checklist">
+                <h4>Check These Environmental Factors:</h4>
+                <li>Measure current humidity level (should be 40-60%)</li>
+                <li>Check ambient temperature (should be 68-77°F)</li>
+                <li>Assess air circulation and drafts</li>
+                <li>Examine workspace for dust and contaminants</li>
+                <li>Verify printer has been at stable conditions for 30+ minutes</li>
+            </div>
+
+            <h3>5.3 Ink System Inspection</h3>
+            <div class="checklist">
+                <h4>Ink System Diagnostic Checklist:</h4>
+                <li>Check all ink levels - ensure above minimum marks</li>
+                <li>Visually inspect ink lines for air bubbles</li>
+                <li>Examine ink cartridge connections for air leaks</li>
+                <li>Check white ink for separation or settling</li>
+                <li>Verify damper condition (if accessible)</li>
+                <li>Assess waste ink bottle level</li>
+            </div>
+
+            <h3>5.4 Software Settings Review</h3>
+            <div class="checklist">
+                <h4>Critical Settings to Verify:</h4>
+                <li>Print resolution (720x1800, 720x2400, or 720x3600)</li>
+                <li>Print mode (bidirectional vs unidirectional)</li>
+                <li>Feed adjustment mode (should be "Heavy")</li>
+                <li>Feed adjustment type (should be "Strong")</li>
+                <li>Ink density settings</li>
+                <li>Environment profile selection</li>
+            </div>
+        </section>
+
+        <section id="solutions" class="section">
+            <h2>6. Step-by-Step Solutions</h2>
+
+            <h3>6.1 Basic Printhead Cleaning</h3>
+            <div class="solution">
+                <h4>When to Perform:</h4>
+                <p>After every 100 prints or when banding appears. For Audley printers, clean every 2-3 days minimum.</p>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_printhead_cleaning_maintenance_lint_free_cloth_20250615_201457.png" alt="Printhead cleaning procedure" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Proper printhead cleaning technique using lint-free cloth and cleaning solution</p>
+                </div>
+
+                <h4>Materials Needed:</h4>
+                <ul>
+                    <li>Lint-free cloths or microfiber cloths</li>
+                    <li>DTF printhead cleaning solution or 90% isopropyl alcohol</li>
+                    <li>Protective gloves</li>
+                    <li>Cotton/foam swabs</li>
+                </ul>
+
+                <h4>Procedure:</h4>
+                <ol>
+                    <li><strong>Power down printer</strong> and unplug from power source</li>
+                    <li><strong>Access printhead</strong> by moving it to maintenance position</li>
+                    <li><strong>Remove ink cartridges</strong> and secure in plastic bags</li>
+                    <li><strong>Exterior cleaning:</strong> Dampen lint-free cloth with cleaning solution</li>
+                    <li><strong>Gentle wiping:</strong> Clean around printhead exterior to remove ink buildup</li>
+                    <li><strong>Nozzle plate cleaning:</strong> Use cotton swabs dampened with cleaning solution to gently dab nozzle plate</li>
+                    <li><strong>Automated cleaning cycle:</strong> Run printer's built-in cleaning function</li>
+                    <li><strong>Reinstall cartridges</strong> and run another nozzle check</li>
+                </ol>
+            </div>
+
+            <h3>6.2 Deep Cleaning for Persistent Clogs</h3>
+            <div class="solution">
+                <h4>When to Perform:</h4>
+                <p>When basic cleaning doesn't resolve issues</p>
+
+                <h4>Additional Materials:</h4>
+                <ul>
+                    <li>Small syringe (without needle)</li>
+                    <li>Silicone tubing</li>
+                    <li>Specialized DTF cleaning solution</li>
+                </ul>
+
+                <h4>Advanced Procedure:</h4>
+                <ol>
+                    <li><strong>Soak method:</strong> Place lint-free cloth soaked in cleaning solution on printhead for 10-15 minutes</li>
+                    <li><strong>Syringe cleaning:</strong> Gently inject cleaning solution through nozzle plate using syringe</li>
+                    <li><strong>Target specific areas:</strong> Focus on colors showing the most problems</li>
+                    <li><strong>Allow drying time:</strong> Let printhead dry completely for 15-20 minutes before reinstalling</li>
+                </ol>
+            </div>
+
+            <h3>6.3 White Ink System Maintenance (Critical for 2W Heads)</h3>
+            <div class="solution">
+                <h4>Daily White Ink Care for Audley 2W Configuration:</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_white_ink_circulation_system_pump_filter_titan_20250615_201502.png" alt="White ink circulation system" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">White ink circulation system - essential for 2 white head maintenance</p>
+                </div>
+                
+                <ol>
+                    <li><strong>Agitation:</strong> Shake white ink bottles thoroughly (2-3 minutes)</li>
+                    <li><strong>Circulation:</strong> Run white ink circulation system continuously</li>
+                    <li><strong>Monitoring:</strong> Check both white heads for separation or settling</li>
+                    <li><strong>Testing:</strong> Print white ink test pattern to verify both heads</li>
+                </ol>
+
+                <h4>Weekly White Ink Maintenance:</h4>
+                <ol>
+                    <li><strong>System Prime:</strong> Use "Load Ink" function to prime white ink system</li>
+                    <li><strong>Filter Check:</strong> Inspect white ink filters for clogs</li>
+                    <li><strong>Line Inspection:</strong> Check all white ink lines for separation</li>
+                    <li><strong>Waste Management:</strong> Empty waste ink bottle if needed</li>
+                </ol>
+            </div>
+
+            <h3>6.4 Environmental Control Solutions</h3>
+            <div class="solution">
+                <h4>Humidity Control (Critical for Audley Printers):</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_humidity_meter_hygrometer_50_percent_optimal_e_20250615_201537.png" alt="Humidity monitoring" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Maintain 50% humidity for optimal Audley printer performance</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Target Range:</strong> Maintain 50% or higher (critical for Audley)</li>
+                    <li><strong>Monitoring:</strong> Use digital hygrometer for continuous tracking</li>
+                    <li><strong>Adjustment:</strong> Use humidifier/dehumidifier as needed</li>
+                    <li><strong>Consistency:</strong> Avoid rapid humidity changes</li>
+                </ul>
+
+                <h4>Temperature Management:</h4>
+                <ul>
+                    <li><strong>Optimal Range:</strong> 68-77°F (20-25°C)</li>
+                    <li><strong>Stability:</strong> Minimize temperature fluctuations</li>
+                    <li><strong>Air Circulation:</strong> Ensure adequate ventilation without direct drafts</li>
+                    <li><strong>Equipment Warm-up:</strong> Allow 30 minutes for temperature stabilization</li>
+                </ul>
+            </div>
+            
+            <h3>6.5 Capping Station Maintenance</h3>
+            <div class="solution">
+                <h4>Essential for Audley Printers:</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_capping_station_cleaning_maintenance_pad_syrin_20250615_201526.png" alt="Capping station cleaning" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Capping station cleaning - prevents ink buildup that causes banding</p>
+                </div>
+                
+                <h4>Procedure:</h4>
+                <ol>
+                    <li>Use syringe to extract excess ink from capping station</li>
+                    <li>Apply cleaning solution to dissolve dried ink</li>
+                    <li>Wipe cap tops with lint-free cloth</li>
+                    <li>Check seal integrity - replace if damaged</li>
+                </ol>
+            </div>
+            
+            <h3>6.6 Encoder Strip Cleaning (Vertical Banding Fix)</h3>
+            <div class="solution">
+                <h4>Critical for Audley Registration Issues:</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_encoder_strip_cleaning_isopropyl_alcohol_lint_20250615_201532.png" alt="Encoder strip cleaning" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Encoder strip cleaning - essential for fixing vertical banding</p>
+                </div>
+                
+                <h4>Procedure:</h4>
+                <ol>
+                    <li>Locate encoder strip (clear plastic strip with markings)</li>
+                    <li>Dampen lint-free cloth with isopropyl alcohol</li>
+                    <li>Gently wipe entire length of strip</li>
+                    <li>Check for damage or scratches</li>
+                    <li>Clean registration wheel to prevent stretched prints</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="maintenance" class="section">
+            <h2>7. Preventive Maintenance Schedule</h2>
+
+            <div class="maintenance-schedule">
+                <div class="schedule-card">
+                    <h4>Daily Maintenance (5-10 minutes)</h4>
+                    <ul class="checklist">
+                        <li>Turn on white ink circulation system</li>
+                        <li>Perform nozzle check before printing</li>
+                        <li>Clean around printhead exterior</li>
+                        <li>Wipe down wiper blades</li>
+                        <li>Check ink levels</li>
+                        <li>Empty waste ink bottle if needed</li>
+                        <li>Agitate white ink bottles (2-3 minutes)</li>
+                    </ul>
+                </div>
+
+                <div class="schedule-card">
+                    <h4>Weekly Maintenance (30-45 minutes)</h4>
+                    <ul class="checklist">
+                        <li>Deep clean printhead if needed</li>
+                        <li>Clean capping station cap tops</li>
+                        <li>Flush capping station with cleaning solution</li>
+                        <li>Clean pinch rollers thoroughly</li>
+                        <li>Clean encoder strip with isopropyl alcohol</li>
+                        <li>Check for air bubbles in ink lines</li>
+                        <li>Inspect white ink system for separation</li>
+                    </ul>
+                </div>
+
+                <div class="schedule-card">
+                    <h4>Monthly Maintenance (1-2 hours)</h4>
+                    <ul class="checklist">
+                        <li>Power ink flush if severe nozzle issues</li>
+                        <li>Grease carriage rails if squeaking</li>
+                        <li>Clean encoder disk</li>
+                        <li>Comprehensive system calibration</li>
+                        <li>Check all mechanical components</li>
+                        <li>Replace ink filters</li>
+                        <li>Clean white ink bottles interior</li>
+                    </ul>
+                </div>
+
+                <div class="schedule-card">
+                    <h4>Quarterly Maintenance (2-3 hours)</h4>
+                    <ul class="checklist">
+                        <li>Replace ink cartridges</li>
+                        <li>Replace ink pads</li>
+                        <li>Replace white ink filters</li>
+                        <li>Deep clean white ink bottles</li>
+                        <li>Professional calibration check</li>
+                        <li>Damper replacement assessment</li>
+                        <li>Complete system performance review</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>Extended Downtime Preparation:</h4>
+                <p>If your printer will be idle for more than 3 weeks, contact technical support to schedule an appointment and prepare the printer for extended downtime or storage. Failure to do so can result in permanent printhead damage.</p>
+            </div>
+        </section>
+
+        <section id="software-settings" class="section">
+            <h2>8. Software Settings & Optimizations</h2>
+
+            <h3>8.1 Resolution Adjustments for Banding Reduction</h3>
+            <div class="tip">
+                <h4>Progressive Resolution Increase:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Resolution</th>
+                            <th>Quality Level</th>
+                            <th>Print Speed</th>
+                            <th>Banding Reduction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>720x1800 DPI</td>
+                            <td>Standard</td>
+                            <td>Fast</td>
+                            <td>Basic</td>
+                        </tr>
+                        <tr>
+                            <td>720x2400 DPI</td>
+                            <td>Improved</td>
+                            <td>Medium</td>
+                            <td>Better</td>
+                        </tr>
+                        <tr>
+                            <td>720x3600 DPI</td>
+                            <td>Premium</td>
+                            <td>Slow</td>
+                            <td>Best</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>8.2 Critical Print Mode Settings</h3>
+            <div class="solution">
+                <h4>OmniDTF UI Software Settings:</h4>
+                <ul>
+                    <li><strong>Feed Adjustment Mode:</strong> Set to "Heavy" for best results</li>
+                    <li><strong>Feed Adjustment Type:</strong> Set to "Strong" for optimal coverage</li>
+                    <li><strong>Print Direction:</strong> Switch to unidirectional for better quality</li>
+                    <li><strong>Ink Density:</strong> Increase by 20-25% if experiencing light banding</li>
+                </ul>
+
+                <h4>Environment Selection:</h4>
+                <ul>
+                    <li>Start with 720x1800 for speed</li>
+                    <li>Upgrade to 720x2400 if banding persists</li>
+                    <li>Use 720x3600 for critical quality applications</li>
+                </ul>
+            </div>
+
+            <h3>8.3 Advanced RIP Software Optimizations</h3>
+            <div class="banding-type">
+                <h4>Color Management:</h4>
+                <ul>
+                    <li>Ensure accurate color profiles are loaded</li>
+                    <li>Properly configure white underbase layers</li>
+                    <li>Adjust ink coverage settings for better saturation</li>
+                    <li>Use color boost settings (20-25%) for problem areas</li>
+                </ul>
+
+                <h4>Print Job Settings:</h4>
+                <ul>
+                    <li><strong>Waveform Selection:</strong> Try different waveforms (Waveform 4 often better for cyan)</li>
+                    <li><strong>Feather Settings:</strong> Adjust up to 600 for solid colors</li>
+                    <li><strong>Pass Count:</strong> Increase passes for better coverage</li>
+                    <li><strong>Drying Time:</strong> Adjust inter-pass delays for better ink settling</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="hardware-upgrades" class="section">
+            <h2>9. Hardware Modifications & Upgrades</h2>
+
+            <h3>9.1 Printhead Upgrades</h3>
+            <div class="solution">
+                <h4>Upgrade Recommendations:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Current Printhead</th>
+                            <th>Recommended Upgrade</th>
+                            <th>Lifespan Improvement</th>
+                            <th>Quality Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Single XP600</td>
+                            <td>Dual XP600 System</td>
+                            <td>Same (6-8 months)</td>
+                            <td>300% faster printing</td>
+                        </tr>
+                        <tr>
+                            <td>XP600</td>
+                            <td>I3200</td>
+                            <td>1.5+ years</td>
+                            <td>Astounding quality</td>
+                        </tr>
+                        <tr>
+                            <td>Single I3200</td>
+                            <td>Dual I3200</td>
+                            <td>Same (1.5+ years)</td>
+                            <td>Higher throughput</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>9.2 Ink System Improvements</h3>
+            <div class="solution">
+                <h4>Damper Upgrades (Critical for Audley):</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_damper_replacement_clogged_damaged_ink_flow_sy_20250615_201558.png" alt="Damper replacement" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Damper replacement - essential consumable part for maintaining ink flow</p>
+                </div>
+                
+                <ul>
+                    <li><strong>High-Quality Dampers:</strong> Replace with commercial-grade dampers</li>
+                    <li><strong>Tube Diameter:</strong> Use smaller diameter tubes (2mm vs 3mm) for better siphon action</li>
+                    <li><strong>Filter Systems:</strong> Add inline filters to prevent contamination</li>
+                    <li><strong>Pressure Regulation:</strong> Install pressure regulation for consistent flow</li>
+                    <li><strong>Spare Parts:</strong> Keep spare dampers on hand - essential for Audley printers</li>
+                </ul>
+
+                <h4>White Ink Circulation System:</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_printer_white_ink_circulation_system_pump_tube_20250615_222938.png" alt="White ink circulation system" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">White ink circulation system with pumps and filters</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Continuous Circulation:</strong> Install dedicated white ink circulation pumps</li>
+                    <li><strong>Agitation System:</strong> Add automatic agitation for ink bottles</li>
+                    <li><strong>Closed Loop Design:</strong> Implement closed-loop white ink systems</li>
+                    <li><strong>Temperature Control:</strong> Add heating elements for cold environments</li>
+                </ul>
+            </div>
+
+            <h3>9.3 Environmental Control Systems</h3>
+            <div class="tip">
+                <h4>Climate Control Upgrades:</h4>
+                <ul>
+                    <li><strong>Humidity Control:</strong> Install dedicated humidifiers/dehumidifiers</li>
+                    <li><strong>Temperature Management:</strong> Use precision temperature controllers</li>
+                    <li><strong>Air Filtration:</strong> Add HEPA filters to reduce dust contamination</li>
+                    <li><strong>Monitoring Systems:</strong> Install continuous environmental monitoring</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="section">
+            <h2>10. Advanced Troubleshooting</h2>
+
+            <h3>10.1 Film Feed Calibration (Audley-Specific)</h3>
+            <div class="banding-type">
+                <h4>Fixing Stretched Prints and Registration Issues:</h4>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/DTF_film_feed_calibration_registration_wheel_dust_20250615_201603.png" alt="Film feed calibration" style="max-width: 60%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                    <p style="margin-top: 10px; color: #666; font-style: italic;">Film feed calibration and registration wheel cleaning - fixes stretched prints</p>
+                </div>
+                
+                <ul>
+                    <li><strong>Common Audley Issue:</strong> Designs printing stretched or duplicated lines</li>
+                    <li><strong>Cause:</strong> Dust on registration wheel or incorrect feed calibration</li>
+                    <li><strong>Solution:</strong> Clean registration wheel weekly, recalibrate film feed</li>
+                    <li><strong>Prevention:</strong> Keep printer covered when not in use</li>
+                </ul>
+            </div>
+
+            <h3>10.2 Systematic Problem Identification</h3>
+            <div class="banding-type">
+                <h4>Step-by-Step Diagnostic Process:</h4>
+                <ol>
+                    <li><strong>Document the Problem:</strong> Take photos of banding patterns</li>
+                    <li><strong>Identify Pattern Type:</strong> Horizontal, vertical, or color-specific</li>
+                    <li><strong>Check Recent Changes:</strong> What changed since last good print?</li>
+                    <li><strong>Environmental Assessment:</strong> Measure current conditions</li>
+                    <li><strong>Nozzle Check Analysis:</strong> Compare current vs. baseline patterns</li>
+                    <li><strong>Systematic Testing:</strong> Change one variable at a time</li>
+                </ol>
+            </div>
+
+            <h3>10.2 Complex Problem Resolution</h3>
+            <div class="warning">
+                <h4>When Multiple Issues Combine:</h4>
+                <p>Chinese DTF printers often exhibit multiple simultaneous problems:</p>
+                <ul>
+                    <li><strong>Environmental + Hardware:</strong> Low humidity AND worn dampers</li>
+                    <li><strong>Software + Mechanical:</strong> Wrong settings AND encoder issues</li>
+                    <li><strong>Ink + Printhead:</strong> White ink settling AND nozzle clogs</li>
+                </ul>
+                
+                <p><strong>Solution Approach:</strong> Address fundamental issues first (environment, ink levels, basic cleaning) before tackling complex hardware problems.</p>
+            </div>
+
+            <h3>10.3 Professional Support Decision Tree</h3>
+            <div class="tip">
+                <h4>When to Seek Professional Help:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Problem Duration</th>
+                            <th>Attempted Solutions</th>
+                            <th>Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1-2 days</td>
+                            <td>Basic cleaning, settings check</td>
+                            <td>Continue self-service</td>
+                        </tr>
+                        <tr>
+                            <td>3-5 days</td>
+                            <td>Deep cleaning, environmental control</td>
+                            <td>Consider professional consultation</td>
+                        </tr>
+                        <tr>
+                            <td>1+ week</td>
+                            <td>Multiple cleaning cycles, part replacement</td>
+                            <td>Professional service required</td>
+                        </tr>
+                        <tr>
+                            <td>Any duration</td>
+                            <td>Printhead damage suspected</td>
+                            <td>Immediate professional assessment</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>10.4 Cost-Benefit Analysis</h3>
+            <div class="solution">
+                <h4>Repair vs. Replace Decision Matrix:</h4>
+                <ul>
+                    <li><strong>Low-Cost Fixes ($0-50):</strong> Cleaning, settings, environmental control</li>
+                    <li><strong>Medium-Cost Solutions ($50-200):</strong> Damper replacement, professional service</li>
+                    <li><strong>High-Cost Solutions ($200+):</strong> Printhead replacement, system upgrades</li>
+                    <li><strong>Replacement Consideration:</strong> When repair costs exceed 40% of new printer value</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" style="background: #e3f2fd; border: 2px solid #2196f3;">
+            <h2>Reference Images & Additional Resources</h2>
+            
+            <h3>Images Used in This Tutorial:</h3>
+            <ul>
+                <li><strong>Horizontal Banding Example:</strong> Prisco inkjet banding demonstration</li>
+                <li><strong>Red Print Banding:</strong> Example of horizontal lines on colored prints</li>
+                <li><strong>Good Nozzle Check:</strong> Example of proper CMYK channel alignment</li>
+                <li><strong>White Ink Issues:</strong> Gray appearance from titanium dioxide settling</li>
+            </ul>
+            
+            <h3>Additional Screenshot Resources:</h3>
+            <p>For more detailed information, these sites were captured for reference:</p>
+            <ul>
+                <li><strong>EazyDTF Guide:</strong> Complete banding causes and solutions<br>
+                    <em>Screenshot: /home/echo/screenshots/eazydtf_com_blogs_blog_what-causes-banding-in-dtf-prints-and-how-to-solve-it_20250615_195455.jpg</em></li>
+                <li><strong>Breathing Color Tutorial:</strong> 4 steps to fix horizontal banding<br>
+                    <em>Screenshot: /home/echo/screenshots/www_breathingcolor_com_blogs_news_fix-horizontal-banding_20250615_195515.jpg</em></li>
+            </ul>
+            
+            <h3>Specific to Audley I3200 4-Head Printers:</h3>
+            <ul>
+                <li>Always perform nozzle checks before each print session</li>
+                <li>With 4 heads, you have redundancy - but all must be maintained</li>
+                <li>I3200 heads are more resilient but still require proper humidity (40-60%)</li>
+                <li>Daily white ink agitation is critical even with premium heads</li>
+            </ul>
+        </section>
+
+        <div class="footer">
+            <p>&copy; 2024 DTF Printer Banding Tutorial | Specialized for Audley I3200 4-Head DTF Printers</p>
+            <p>This guide synthesizes information from T-Shirt Forums, OmniDTF Knowledge Base, EazyDTF, and community experiences with premium I3200 printhead systems</p>
+        </div>
+    </div>
+</body>
+</html>
